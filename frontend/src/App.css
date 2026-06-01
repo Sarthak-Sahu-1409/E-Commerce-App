@@ -344,31 +344,46 @@ body {
 .product-list h1 {
   margin: 0 0 16px;
   text-align: center;
-  font-size: 28px;
+  font-size: 24px;
 }
 
 .product-list ul {
   list-style: none;
-  margin: 0;
+  margin: 0 0 10px 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  border: 1px solid #b9d7f0;
-  border-radius: 4px;
-  background: #f7fbff;
-  overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  grid-template-columns: repeat(6, 1fr);
+  border: 1px solid #ccc;
+  background: #f9f9f9;
+}
+
+.product-list ul:first-child {
+  background: #e8e8e8;
+  font-weight: bold;
 }
 
 .product-list ul li {
-  padding: 16px 20px;
+  padding: 12px;
   text-align: center;
-  font-weight: 600;
-  font-size: 15px;
-  color: #2f3b45;
-  border-right: 1px solid #b9d7f0;
+  font-size: 14px;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
 }
 
 .product-list ul li:last-child {
   border-right: none;
+}
+
+.product-list button {
+  padding: 6px 12px;
+  background: #ff4444;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.product-list button:hover {
+  background: #cc0000;
 }
