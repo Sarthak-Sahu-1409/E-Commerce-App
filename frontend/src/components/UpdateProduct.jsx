@@ -13,7 +13,11 @@ const UpdateProduct=()=>{
     },[]);
 
     const getProductDetails = async ()=>{
-        let result = await fetch(`http://localhost:5000/products/${params.id}`);
+        let result = await fetch(`http://localhost:5000/products/${params.id}`,{
+            headers:{
+                authorization:`bearer ${JSON.parse(localStorage.getItem('token'))}`
+            }
+        });
         result = await result.json();
         setName(result.name);
         setPrice(result.price);
@@ -26,7 +30,8 @@ const UpdateProduct=()=>{
             method: 'PUT',
             body:JSON.stringify({name, brand, category, price}),
             headers:{
-                'Content-Type':"application/json"
+                'Content-Type':"application/json",
+                authorization:`bearer ${JSON.parse(localStorage.getItem('token'))}`
             }
         });
         result = (await result).json();
