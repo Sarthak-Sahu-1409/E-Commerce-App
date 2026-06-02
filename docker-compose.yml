@@ -11,6 +11,7 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=5000
+      - MONGO_URI=mongodb://db:27017/ecommerce
     networks:
       - ecommerce-network
     depends_on:
@@ -27,8 +28,6 @@ services:
     container_name: ecommerce-frontend
     ports:
       - "3000:3000"
-    environment:
-      - VITE_API_URL=http://backend:5000
     networks:
       - ecommerce-network
     depends_on:
