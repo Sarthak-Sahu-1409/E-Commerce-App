@@ -210,54 +210,6 @@ STEP 6: CONNECT FRONTEND URL BACK TO RENDER (CORS FIX)
 4. Your app should now be fully working end-to-end.
 
 ================================================================
-STEP 7: VERIFY EVERYTHING WORKS
-================================================================
-
-1. Visit your Vercel URL.
-2. Sign up for a new account.
-3. Log in with your credentials.
-4. Add a product.
-5. View, update, and delete products.
-
-If anything fails:
-- Check Render logs: Dashboard → your service → Logs
-- Check Vercel logs: Dashboard → your project → Deployments → Functions
-- Check browser DevTools → Network tab for failed requests
-
-================================================================
-COMMON ISSUES & FIXES
-================================================================
-
-ISSUE: CORS error in browser console
-FIX:   Make sure FRONTEND_URL env var on Render exactly matches
-       your Vercel URL (no trailing slash).
-
-ISSUE: "Cannot connect to database" on Render
-FIX:   Check MONGO_URI env var. Make sure Atlas Network Access
-       allows 0.0.0.0/0.
-
-ISSUE: Blank page on Vercel
-FIX:   Make sure Root Directory is set to "frontend" in Vercel
-       project settings.
-
-ISSUE: 404 on page refresh (e.g. /add route)
-FIX:   Create frontend/public/_redirects file with:
-       /*    /index.html    200
-       Or add vercel.json in frontend folder:
-       {
-         "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
-       }
-
-ISSUE: Render service sleeps after inactivity (free tier)
-FIX:   First request after sleep takes ~30s. Upgrade to paid
-       tier or use a cron ping service to keep it awake.
-
-ISSUE: Delete product not working after deployment
-FIX:   In ProductList.jsx, the deleteProduct fetch is missing
-       the authorization header. Add it:
-       headers: { authorization: `bearer ${JSON.parse(localStorage.getItem('token'))}` }
-
-================================================================
 ENVIRONMENT VARIABLES SUMMARY
 ================================================================
 
@@ -269,25 +221,6 @@ RENDER (Backend):
 
 VERCEL (Frontend):
   VITE_API_URL    https://your-backend.onrender.com
-
-================================================================
-FREE TIER LIMITS (as of 2025)
-================================================================
-
-Render (Free):
-  - 750 hours/month of runtime
-  - Spins down after 15 min of inactivity
-  - 512 MB RAM
-
-Vercel (Hobby):
-  - Unlimited static deployments
-  - 100 GB bandwidth/month
-  - No sleep — always on
-
-MongoDB Atlas (Free M0):
-  - 512 MB storage
-  - Shared cluster
-  - No sleep
 
 ================================================================
 END OF GUIDE
