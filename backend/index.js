@@ -8,8 +8,12 @@ const app=express();
 const Jwt = require('jsonwebtoken');
 const jwtKey = process.env.JWT_SECRET || 'secret';
 app.use(express.json());
+const allowedOrigins = process.env.FRONTEND_URL 
+  ? process.env.FRONTEND_URL.split(',').map(o => o.trim()) 
+  : '*';
+console.log("CORS Allowed Origins:", allowedOrigins);
 app.use(cors({
-  origin: process.env.FRONTEND_URL || '*'
+  origin: allowedOrigins
 }));
 
 app.post("/register",async (req,resp)=>{
