@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import API_BASE from '../config';
 
 const AddProduct=()=>{
     const [name,setName]=useState("");
@@ -7,7 +8,7 @@ const AddProduct=()=>{
     const [category,setCategory]=useState("");
     const addProduct= async ()=>{
         const userId =JSON.parse(localStorage.getItem('user'))._id;
-        let result = await fetch ("http://localhost:5000/add-product",{
+        let result = await fetch (`${API_BASE}/add-product`,{
             method:'POST',
             body:JSON.stringify({name,price,category,brand,userId}),
             headers:{

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from 'react-router-dom';
+import API_BASE from '../config';
 const UpdateProduct=()=>{
     const [name,setName]=useState("");
     const [brand,setBrand]=useState("");
@@ -13,7 +14,7 @@ const UpdateProduct=()=>{
     },[]);
 
     const getProductDetails = async ()=>{
-        let result = await fetch(`http://localhost:5000/products/${params.id}`,{
+        let result = await fetch(`${API_BASE}/products/${params.id}`,{
             headers:{
                 authorization:`bearer ${JSON.parse(localStorage.getItem('token'))}`
             }
@@ -26,7 +27,7 @@ const UpdateProduct=()=>{
     }
 
     const updateProduct= async ()=>{
-        let result = fetch(`http://localhost:5000/products/${params.id}`,{
+        let result = fetch(`${API_BASE}/products/${params.id}`,{
             method: 'PUT',
             body:JSON.stringify({name, brand, category, price}),
             headers:{

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import API_BASE from '../config';
 const ProductList=()=>{
     const [products,setProducts]=useState([]);
 
@@ -8,7 +9,7 @@ const ProductList=()=>{
     },[])
 
     const getProducts=async()=>{
-        let result = await fetch("http://localhost:5000/products",{
+        let result = await fetch(`${API_BASE}/products`,{
             headers:{
                 authorization:`bearer ${JSON.parse(localStorage.getItem('token'))}`
             }
@@ -18,7 +19,7 @@ const ProductList=()=>{
     }
 
     const deleteProduct =async (id)=>{
-        let result = await fetch (`http://localhost:5000/products/${id}`,
+        let result = await fetch (`${API_BASE}/products/${id}`,
             {method: 'DELETE',
             headers:{
                 authorization:`bearer ${JSON.parse(localStorage.getItem('token'))}`
