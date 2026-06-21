@@ -5,9 +5,11 @@ const User = require("./db/User");
 const Product = require("./db/Product");
 const app=express();
 const Jwt = require('jsonwebtoken');
-const jwtKey = 'secret';
+const jwtKey = process.env.JWT_SECRET || 'secret';
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: process.env.FRONTEND_URL || '*'
+}));
 
 app.post("/register",async (req,resp)=>{
     let user = new User(req.body);
@@ -98,4 +100,4 @@ function verifyToken(req,resp,next){
     }
 }
 
-app.listen(5000);
+app.listen(process.env.PORT || 5000);
